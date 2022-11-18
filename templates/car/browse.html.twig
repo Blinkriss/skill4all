@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Liste des voitures :
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+
+			{% for car in cars %}
+				<div class="cols-3" style="max-width: 20rem;">
+					<div class="card border-primary my-4">
+						<div class="card-header">{{car.carCategory.name}}</div>
+						<div class="card-body">
+							<h4 class="card-title">{{car.name}}</h4>
+							<p class="card-text">Numbers of seats :
+								{{car.nbSeats}}</p>
+							<p class="card-text">Numbers of doors :
+								{{car.nbDoors}}</p>
+							<p class="card-text">Price :
+								{{car.cost}}€</p>
+						</div>
+					</div>
+				</div>
+
+
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
