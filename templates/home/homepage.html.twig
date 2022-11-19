@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search your car
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<div class="container">
+		<div class="form-row">
+			<div class="col">
+				{{ form_row(form) }}
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success mt-3">Search</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+	<script src="{{ asset('js/APIweather.js') }}"></script>
+{% endblock %}

@@ -10,7 +10,6 @@
 			<h1>List of all cars</h1>
 		</div>
 		<div class="row">
-
 			{% for car in cars %}
 				<div class="cols-3" style="max-width: 20rem;">
 					<div class="card border-primary my-4">
@@ -23,6 +22,7 @@
 								{{car.nbDoors}}</p>
 							<p class="card-text">Price :
 								{{car.cost|number_format(0, '', ' ')}}€</p>
+
 						</div>
 					</div>
 				</div>

@@ -1,13 +1,9 @@
 {% extends "base.html.twig" %}
 
-{% block title %}
-	List of cars :
-{% endblock %}
-
 {% block body %}
 	<div class="container">
 		<div class="fs-1 mt-3">
-			<h1>List of all cars</h1>
+			<h1>{{car.carCategory.name}}</h1>
 		</div>
 		<div class="row">
 
@@ -22,7 +18,7 @@
 							<p class="card-text">Numbers of doors :
 								{{car.nbDoors}}</p>
 							<p class="card-text">Price :
-								{{car.cost|number_format(0, '', ' ')}}€</p>
+								{{car.cost}}€</p>
 						</div>
 					</div>
 				</div>
