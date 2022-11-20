@@ -8,6 +8,7 @@ use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CarCategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,31 +22,16 @@ class CarController extends AbstractController
     /**
      * @Route("", name="browse", methods={"GET"})
      */
-    public function browse(CarRepository $carRepository): Response
+    public function browse(CarRepository $carRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('admin/car/browse.html.twig', [
-            'cars' => $carRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/list/{id}", name="list", requirements={"id":"\d+"})
-     */
-    public function browseByCategory(CarCategoryRepository $carCategoryRepository, EntityManagerInterface $em, int $id)
-    {
-        $categories = $carCategoryRepository->findAll();
-
-        $query = $em->createQuery(
-            'SELECT c FROM App\Entity\Car c
-            JOIN c.carCategory cc
-            WHERE cc.id = ' . $id,
+        $data = $carRepository->findAll();
+        $cars = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            20
         );
-
-        $cars = $query->getResult();
-
-        return $this->render('admin/car/list.html.twig', [
-            'categories' => $categories,
-            'cars' => $cars,
+        return $this->render('admin/car/browse.html.twig', [
+            'cars' => $cars
         ]);
     }
 

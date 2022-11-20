@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($carCategory);
 
-            for ($c = 0; $c < mt_rand(15, 20); $c++) {
+            for ($c = 0; $c < mt_rand(40, 50); $c++) {
                 $car = new Car;
 
                 $car->setName($faker->car())

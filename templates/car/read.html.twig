@@ -5,8 +5,7 @@
 
 {% block body %}
 	<div class="container">
-		<h2 class="mt-3">A car :
-			{{car.name}}</h2>
+		<h2 class="mt-3">A car</h2>
 		<div class="cols-3" style="max-width: 20rem;">
 			<div class="card border-primary my-4">
 				<div class="card-header">{{car.carCategory.name}}</div>
@@ -21,7 +20,5 @@
 				</div>
 			</div>
 		</div>
-		<a href="{{ path('admin-car-edit', {'id': car.id}) }}" class="btn btn-primary mx-3">Update car</a>
-		<a href="{{ path('admin-car-delete', {'id': car.id}) }}" class="btn btn-danger">Delete car</a>
 	</div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Skill4all - Admin
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="mt-3">Admin page</h2>
+		<a href="{{ path('admin-car-browse') }}" class="px-3">List of cars</a>
+		<a href="{{ path('admin-car-add') }}" class="px-3">Add a car</a>
+	</div>
+{% endblock %}
