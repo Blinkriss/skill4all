@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\CarSearch;
+use App\Form\CarSearchType;
 use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CarCategoryRepository;
@@ -66,6 +68,27 @@ class CarController extends AbstractController
 
         return $this->render('car/read.html.twig', [
             'car' => $car,
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function search(CarRepository $carRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $cars = [];
+
+        $name = $request->query->get(('name'));
+        $data = $carRepository->findBy(['name' => $name]);
+
+        $cars = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            20
+        );
+        return $this->render('car/search.html.twig', [
+            'controller_name' => 'CarController',
+            'cars' => $cars
         ]);
     }
 }
