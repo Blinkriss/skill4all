@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CarSearch;
 use App\Form\CarSearchType;
 use App\Repository\CarRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function home(Request $request, CarRepository $carRepository): Response
+    public function home(Request $request, CarRepository $carRepository, PaginatorInterface $paginator): Response
     {
         $carSearch = new CarSearch();
         $cars = [];
@@ -25,10 +26,14 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $name = $carSearch->getName();
-            $cars = $carRepository->findBy(['name' => $name]);
+            $data = $carRepository->findBy(['name' => $name]);
 
-            return $this->render('car/list.html.twig', [
-                'form' => $form->createView(),
+            $cars = $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                20
+            );
+            return $this->render('car/search.html.twig', [
                 'cars' => $cars
             ]);
         } else {

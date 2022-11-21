@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Car;
 use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CarCategoryRepository;
