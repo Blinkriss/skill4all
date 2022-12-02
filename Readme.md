@@ -7,3 +7,5 @@ Could you please before populate your DB, add the file **Car.php** that you can 
 
 Thank you !
 
+[Skills4All- Cas dealership symfony.docx](https://github.com/Blinkriss/skill4all/files/10141501/Skills4All-.Cas.dealership.symfony.docx)
+
